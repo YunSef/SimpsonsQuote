@@ -1,0 +1,18 @@
+
+.big {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.list ul{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+#quote {
+    height: 30px;
+    width: auto;
+    background-color: lightgray;
+    
+}
