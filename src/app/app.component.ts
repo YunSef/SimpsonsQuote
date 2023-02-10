@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { from } from 'rxjs';
 import { HttpClient } from '@angular/common/http'
-interface MesCouilles {
+interface Simpsons {
   character:string,
   characterDirection:string,
   image:string,
@@ -15,9 +15,9 @@ interface MesCouilles {
 })
 export class AppComponent implements OnInit {
   title = 'simpsonsChallenge';
-  characters :MesCouilles[] = [];
+  characters :Simpsons[] = [];
   
-  quote : MesCouilles[] = [];
+  quote : Simpsons[] = [];
   constructor(private http : HttpClient){}
   ngOnInit(){
     this.getData();
@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     for(let i = 0; i<6 ; i++){
     // let response =  await fetch('https://thesimpsonsquoteapi.glitch.me/quotes');
     // let character = await response.json()
-    this.http.get<MesCouilles[]>('https://thesimpsonsquoteapi.glitch.me/quotes')
+    this.http.get<Simpsons[]>('https://thesimpsonsquoteapi.glitch.me/quotes')
     .subscribe(character =>{
       this.characters.push(character[0]);
       this.filter();
@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
      
   }
   async filter(){
-    const charact = this.characters.map((el:MesCouilles) => el.character);
+    const charact = this.characters.map((el:Simpsons) => el.character);
     this.characters = this.characters.filter(({character},index) => !charact.includes(character,index+1))
 
   }
@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
   async getQuote(char: any){
     // let response2 = await fetch(`https://thesimpsonsquoteapi.glitch.me/quotes?character=${char.character}`)
     // let quote = await response2.json();
-    this.http.get<MesCouilles[]>(`https://thesimpsonsquoteapi.glitch.me/quotes?character=${char.character}`)
+    this.http.get<Simpsons[]>(`https://thesimpsonsquoteapi.glitch.me/quotes?character=${char.character}`)
     .subscribe(quote => {
       this.quote.push(quote[0]);
     })
